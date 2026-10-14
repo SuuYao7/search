@@ -1,0 +1,14 @@
+name: 抓取维基百科
+on: [workflow_dispatch]
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 下载页面
+        run: curl -L -o wiki.html "https://en.wikipedia.org/wiki/JavaScript"
+      - name: 上传结果
+        uses: actions/upload-artifact@v4
+        with:
+          name: wiki-page
+          path: wiki.html
